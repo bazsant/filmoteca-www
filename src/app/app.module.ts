@@ -11,10 +11,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ClienteComponent } from './cliente/cliente.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'cliente', component: ClienteComponent },
+  { path: 'clientes', component: ClienteComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     NgbModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
