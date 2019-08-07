@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
 
-      <p>Table is just a mapping of objects to table rows with <code>ngFor</code></p>
+      <h2>Clientes</h2>
 
       <table class="table table-striped">
         <thead>
@@ -23,7 +23,7 @@
             <td>{{ cliente.phone }}</td>
             <td>{{ cliente.gender }}</td>
             <td>{{ cliente.email }}</td>
-            <td>{{ cliente.birth }}</td>
+            <td>{{ cliente.birth | date }}</td>
           </tr>
         </tbody>
       </table>
