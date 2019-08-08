@@ -1,9 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-
       <h2>Clientes</h2>
-
       <table class="table table-striped">
         <thead>
           <tr>
@@ -24,10 +22,18 @@
             <td>{{ cliente.gender }}</td>
             <td>{{ cliente.email }}</td>
             <td>{{ cliente.birth | date }}</td>
+            <td>
+              <i class="material-icons">
+                create
+              </i>
+              &nbsp;
+              <i class="material-icons">
+                delete
+              </i>
+            </td>
           </tr>
         </tbody>
       </table>
-
     </div>
   </div>
 </div>
