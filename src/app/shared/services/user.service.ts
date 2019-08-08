@@ -14,4 +14,16 @@ export class UserService {
   get(): Observable<User[]> {
     return this.http.get<User[]>(`${environment.apiUrl}/users`);
   }
+
+  post(user): Observable<User> {
+    return this.http.post<User>(`${environment.apiUrl}/users`, user);
+  }
+
+  put(user): Observable<User[]> {
+    return this.http.put<User[]>(`${environment.apiUrl}/users`, user);
+  }
+
+  delete(id): Observable<User> {
+    return this.http.delete<User>(`${environment.apiUrl}/users/${id}`);
+  }
 }

@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { MatToolbarModule, MatButtonModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatRadioModule,
+   MatDatepickerModule, MatDatepickerToggle, MatNativeDateModule, MatInputModule } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -12,10 +14,12 @@ import { ClienteComponent } from './cliente/cliente.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ClienteCadastroComponent } from './cliente/cliente-cadastro/cliente-cadastro.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'clientes', component: ClienteComponent },
+  { path: 'clientes/cadastro', component: ClienteCadastroComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -25,7 +29,8 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     ClienteComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    ClienteCadastroComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +38,14 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     NgbModule,
     MatToolbarModule,
+    MatFormFieldModule,
+    MatRadioModule,
     MatButtonModule,
-    HttpClientModule
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
