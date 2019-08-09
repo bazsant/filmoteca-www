@@ -30,9 +30,9 @@
             <td>{{ cliente.phone }}</td>
             <td>{{ cliente.gender }}</td>
             <td>{{ cliente.email }}</td>
-            <td>{{ cliente.birth | date }}</td>
+            <td>{{ cliente.birth | date : 'mediumDate' : 'UTC' }}</td>
             <td>
-              <i [routerLink]="[ '/editar', cliente.id ]" class="material-icons">
+              <i [routerLink]="[ 'editar', cliente.id ]" class="material-icons">
                 create
               </i>
               &nbsp;

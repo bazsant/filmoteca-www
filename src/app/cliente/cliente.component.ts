@@ -36,15 +36,17 @@ export class ClienteComponent implements OnInit {
       cancelButtonText: 'Nãããão!'
     }).then((result) => {
       if (result.value) {
-        this.userService.delete(cliente).subscribe(ret => {
+        this.userService.delete(cliente).subscribe(() => {
           Swal.fire(
             'Excluído!',
             'O usuário foi excluído.',
             'success'
-          ).then(result => {
+          ).then(() => {
             this.buscar();
           });
         }, err => {
+          console.error(err);
+
           Swal.fire(
             'Erro!',
             'Houve erro na exclusão.',

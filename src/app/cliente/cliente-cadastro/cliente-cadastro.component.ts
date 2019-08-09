@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cliente-cadastro',
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class ClienteCadastroComponent implements OnInit {
 
   userForm = this.fb.group({
+    id: [''],
     name: ['', Validators.required],
     phone: ['', Validators.required],
     gender: ['', Validators.required],
@@ -19,23 +20,49 @@ export class ClienteCadastroComponent implements OnInit {
     birth: ['', Validators.required]
   });
 
+  inserir = true;
+  id: string;
+
   constructor(private fb: FormBuilder,
               private userService: UserService,
+              private route: ActivatedRoute,
               private router: Router) { }
 
-  ngOnInit() {
+   ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get('id');
+
+    if (this.id) {
+      this.inserir = false;
+      this.userService.getById(this.id).subscribe(res => {
+        this.userForm.patchValue(res[0]);
+      }, err => {
+        console.error(err);
+
+      });
+    }
+
   }
 
   onSubmit() {
-    this.userService.post(this.userForm.value).subscribe(res => {
-      Swal.fire('Sucesso!', 'Cliente inserido com sucesso!', 'success').then(result => {
-        this.router.navigate(['/clientes']);
+    if (this.inserir) {
+      this.userService.post(this.userForm.value).subscribe(() => {
+        Swal.fire('Sucesso!', 'Cliente inserido com sucesso!', 'success').then(() => {
+          this.router.navigate(['/clientes']);
+        });
+      }, err => {
+        console.error(err);
+        Swal.fire('Erro!', 'Erro ao inserir cliente', 'error');
       });
-    }, err => {
-      console.error(err);
-
-      Swal.fire('Erro!', 'Erro ao inserir cliente', 'error');
-    });
+    } else {
+      this.userService.put(this.userForm.value).subscribe(() => {
+        Swal.fire('Sucesso!', 'Cliente alterado com sucesso!', 'success').then((res) => {
+          this.router.navigate(['/clientes']);
+        });
+      }, err => {
+        console.error(err);
+        Swal.fire('Erro!', 'Erro ao alterar cliente', 'error');
+      });
+    }
   }
 
 }

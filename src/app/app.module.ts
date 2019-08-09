@@ -3,10 +3,16 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import { LOCALE_ID } from '@angular/core';
 
 import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatRadioModule,
-   MatDatepickerModule, MatDatepickerToggle, MatNativeDateModule, MatInputModule } from '@angular/material';
+   MatDatepickerModule, MatInputModule } from '@angular/material';
+import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import {NgxMaskModule} from 'ngx-mask';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -21,10 +27,13 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'clientes', component: ClienteComponent },
   { path: 'clientes/cadastro', component: ClienteCadastroComponent },
+  { path: 'clientes/editar/:id', component: ClienteCadastroComponent },
   { path: 'sobre', component: AboutComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
+registerLocaleData(localePt, 'pt');
+export const options: Partial<IConfig> | (() => Partial<IConfig>);
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,12 +54,16 @@ const appRoutes: Routes = [
     MatRadioModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatNativeDateModule,
+    MatMomentDateModule,
     MatInputModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(options)
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt' },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
