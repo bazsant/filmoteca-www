@@ -15,11 +15,13 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ClienteCadastroComponent } from './cliente/cliente-cadastro/cliente-cadastro.component';
+import { AboutComponent } from './about/about.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'clientes', component: ClienteComponent },
   { path: 'clientes/cadastro', component: ClienteCadastroComponent },
+  { path: 'sobre', component: AboutComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -30,7 +32,8 @@ const appRoutes: Routes = [
     ClienteComponent,
     HeaderComponent,
     HomeComponent,
-    ClienteCadastroComponent
+    ClienteCadastroComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

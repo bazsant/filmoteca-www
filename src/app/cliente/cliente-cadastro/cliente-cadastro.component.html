@@ -35,7 +35,7 @@
           </mat-form-field>
         </div>
         <div class="form-group">
-          <button color="primary" type="submit" mat-flat-button>Inserir</button>
+          <button color="primary" [disabled]="!userForm.valid" type="submit" mat-flat-button>Inserir</button>
         </div>
       </form>
     </div>
