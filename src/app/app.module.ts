@@ -12,7 +12,7 @@ import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatRadioModule,
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import {NgxMaskModule} from 'ngx-mask';
+import {NgxMaskModule, IConfig} from 'ngx-mask';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -33,7 +33,6 @@ const appRoutes: Routes = [
 ];
 
 registerLocaleData(localePt, 'pt');
-export const options: Partial<IConfig> | (() => Partial<IConfig>);
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +57,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>);
     MatInputModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxMaskModule.forRoot(options)
+    NgxMaskModule.forRoot()
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
