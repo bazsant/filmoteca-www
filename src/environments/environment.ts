@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://filmoteca-api.herokuapp.com'
+  apiUrl: 'https://localhost:44354/api'
 };
 
 /*

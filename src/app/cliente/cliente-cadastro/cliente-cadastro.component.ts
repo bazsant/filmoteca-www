@@ -11,13 +11,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ClienteCadastroComponent implements OnInit {
 
-  userForm = this.fb.group({
-    id: [''],
-    name: ['', Validators.required],
-    phone: ['', Validators.required],
-    gender: ['', Validators.required],
-    email: ['', Validators.required],
-    birth: ['', Validators.required]
+  userForm = this.fb.group({    
+    cdPessoa: [''],
+    nmPessoa: ['', Validators.required],
+    dsTelefone: ['', Validators.required],
+    cdSexo: ['', Validators.required],
+    dsEmail: ['', Validators.required],
+    dtNascimento: ['', Validators.required]
   });
 
   inserir = true;
@@ -34,7 +34,7 @@ export class ClienteCadastroComponent implements OnInit {
     if (this.id) {
       this.inserir = false;
       this.userService.getById(this.id).subscribe(res => {
-        this.userForm.patchValue(res[0]);
+        this.userForm.patchValue(res);
       }, err => {
         console.error(err);
 

@@ -7,34 +7,34 @@
         </div>
         <div class="form-group">
           <mat-form-field class="w-100">
-            <input matInput placeholder="Nome" required formControlName="name">
+            <input matInput placeholder="Nome" required formControlName="nmPessoa">
           </mat-form-field>
         </div>
         <div class="form-group">
           <mat-form-field class="w-100">
-            <input matInput placeholder="Telefone" mask="(00)0000-00009" required formControlName="phone">
+            <input matInput placeholder="Telefone" mask="(00)0000-00009" required formControlName="dsTelefone">
           </mat-form-field>
         </div>
         <div class="form-group">
-          <mat-radio-group required formControlName="gender">
+          <mat-radio-group required formControlName="cdSexo">
             <mat-radio-button value="M">Masculino</mat-radio-button>
             <mat-radio-button value="F">Feminino</mat-radio-button>
           </mat-radio-group>
         </div>
         <div class="form-group">
           <mat-form-field class="w-100">
-            <input matInput placeholder="e-mail" required formControlName="email">
+            <input matInput placeholder="e-mail" required formControlName="dsEmail">
           </mat-form-field>
         </div>
         <div class="form-group">
           <mat-form-field class="w-100">
-            <input matInput  [matDatepicker]="picker" required formControlName="birth" placeholder="Data de Nascimento">
+            <input matInput  [matDatepicker]="picker" required formControlName="dtNascimento" placeholder="Data de Nascimento">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
         <div class="form-group">
-          <button color="primary" [disabled]="!userForm.valid" type="submit" mat-flat-button>Inserir</button>
+          <button color="primary" type="submit" mat-flat-button>Submeter</button>
         </div>
       </form>
     </div>

@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <h2>Filmes</h2>
+      </div>
+      <div class="col-1">
+        <i [routerLink]="['cadastro']" class="material-icons cursor-pointer">
+          add_box
+        </i>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Diretor</th>
+              <th scope="col">Elenco</th>
+              <th scope="col">Genero</th>
+              <th scope="col">Estudio</th>
+              <th scope="col">Lançamento</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let filme of filmes; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ filme.dsTitulo }}</td>
+              <td>{{ filme.dsDiretor }}</td>
+              <td>{{ filme.dsElenco }}</td>
+              <td>{{ filme.dsGenero }}</td>
+              <td>{{ filme.dsEstudio }}</td>
+              <td>{{ filme.dtLancamento | date : 'mediumDate' : 'UTC' }}</td>
+              <td>
+                <i [routerLink]="[ 'editar', filme.cdFilme ]" class="material-icons cursor-pointer">
+                  create
+                </i>
+                &nbsp;
+                <i (click)="excluir(filme.cdFilme)" class="material-icons cursor-pointer">
+                  delete
+                </i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

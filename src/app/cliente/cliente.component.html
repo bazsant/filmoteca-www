@@ -4,7 +4,7 @@
       <h2>Clientes</h2>
     </div>
     <div class="col-1">
-      <i [routerLink]="[ 'cadastro' ]" class="material-icons">
+      <i [routerLink]="[ 'cadastro' ]" class="material-icons cursor-pointer">
         add_box
       </i>
     </div>
@@ -26,17 +26,17 @@
         <tbody>
           <tr *ngFor="let cliente of users; index as i">
             <th scope="row">{{ i + 1 }}</th>
-            <td>{{ cliente.name }}</td>
-            <td>{{ cliente.phone }}</td>
-            <td>{{ cliente.gender }}</td>
-            <td>{{ cliente.email }}</td>
-            <td>{{ cliente.birth | date : 'mediumDate' : 'UTC' }}</td>
+            <td>{{ cliente.nmPessoa }}</td>
+            <td>{{ cliente.dsTelefone }}</td>
+            <td>{{ cliente.cdSexo }}</td>
+            <td>{{ cliente.dsEmail }}</td>
+            <td>{{ cliente.dtNascimento | date : 'mediumDate' : 'UTC' }}</td>
             <td>
-              <i [routerLink]="[ 'editar', cliente.id ]" class="material-icons">
+              <i [routerLink]="[ 'editar', cliente.cdPessoa ]" class="material-icons cursor-pointer">
                 create
               </i>
               &nbsp;
-              <i (click)="excluir(cliente.id)" class="material-icons">
+              <i (click)="excluir(cliente.cdPessoa)" class="material-icons cursor-pointer">
                 delete
               </i>
             </td>

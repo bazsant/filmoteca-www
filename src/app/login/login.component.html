@@ -1,0 +1,38 @@
+<div class="container-fluid pagina">
+    <div class="row justify-content-center">
+        <div class="col col-md-8 col-lg-5 col-xl-4">
+            <mat-card>
+                <mat-card-header class="justify-content-center">
+                    <mat-card-title>Login</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="container-fluid">
+                        <div class="row text-center">
+                            <div class="col">
+                                <mat-form-field>
+                                    <input matInput placeholder="Usuario" #user>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col">
+                                <mat-form-field>
+                                    <input matInput placeholder="Senha" #pass type="password">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <div class="container-fluid">
+                        <div class="row text-center">
+                            <div class="col">
+                                <button mat-raised-button (click)="login(user.value, pass.value)" color="primary">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

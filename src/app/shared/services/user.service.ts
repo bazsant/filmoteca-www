@@ -12,22 +12,28 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   get(): Observable<User[]> {
-    return this.http.get<User[]>(`${environment.apiUrl}/users`);
+    return this.http.get<User[]>(`${environment.apiUrl}/pessoas`);
   }
 
   getById(id): Observable<User[]> {
-    return this.http.get<User[]>(`${environment.apiUrl}/users/${id}`);
+    return this.http.get<User[]>(`${environment.apiUrl}/pessoas/${id}`);
   }
 
   post(user): Observable<User> {
-    return this.http.post<User>(`${environment.apiUrl}/users`, user);
+    return this.http.post<User>(`${environment.apiUrl}/pessoas`, {
+      nmPessoa: user.nmPessoa,
+      dtNascimento: user.dtNascimento,
+      cdSexo: user.cdSexo,
+      dsEmail: user.dsEmail,
+      dsTelefone: user.dsTelefone
+    });
   }
 
   put(user): Observable<User[]> {
-    return this.http.put<User[]>(`${environment.apiUrl}/users`, user);
+    return this.http.put<User[]>(`${environment.apiUrl}/pessoas/${user.cdPessoa}`, user);
   }
 
   delete(id): Observable<User> {
-    return this.http.delete<User>(`${environment.apiUrl}/users/${id}`);
+    return this.http.delete<User>(`${environment.apiUrl}/pessoas/${id}`);
   }
 }

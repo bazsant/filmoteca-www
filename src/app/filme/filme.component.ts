@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../shared/services/user.service';
-import { User } from '../shared/models/user';
+import { Filme } from '../shared/models/filme';
+import { FilmeService } from '../shared/services/filme.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-cliente',
-  templateUrl: './cliente.component.html',
-  styleUrls: ['./cliente.component.scss']
+  selector: 'app-filme',
+  templateUrl: './filme.component.html',
+  styleUrls: ['./filme.component.scss']
 })
-export class ClienteComponent implements OnInit {
+export class FilmeComponent implements OnInit {
 
-  users: User[];
+  filmes: Filme[];
 
-  constructor(private userService: UserService) { }
+  constructor(private filmeService: FilmeService) { }
 
   ngOnInit() {
     this.buscar();
   }
 
   buscar(): any {
-    this.userService.get().subscribe(ret => {
+    this.filmeService.get().subscribe(ret => {
       console.log(ret);
       
-      this.users = ret;
+      this.filmes = ret;
     });
   }
 
@@ -38,10 +38,10 @@ export class ClienteComponent implements OnInit {
       cancelButtonText: 'Nãããão!'
     }).then((result) => {
       if (result.value) {
-        this.userService.delete(cliente).subscribe(() => {
+        this.filmeService.delete(cliente).subscribe(() => {
           Swal.fire(
             'Excluído!',
-            'O usuário foi excluído.',
+            'Excluído com sucesso.',
             'success'
           ).then(() => {
             this.buscar();

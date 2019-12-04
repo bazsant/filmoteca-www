@@ -7,8 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "ng build --aot --prod"
+    "e2e": "ng e2e"
   },
   "engines": {
     "node": "8.10.0",
@@ -31,6 +30,7 @@
     "core-js": "^2.5.4",
     "express": "^4.17.1",
     "hammerjs": "^2.0.8",
+    "md5": "^2.2.1",
     "moment": "^2.24.0",
     "ngx-mask": "^8.0.3",
     "primeicons": "^2.0.0",

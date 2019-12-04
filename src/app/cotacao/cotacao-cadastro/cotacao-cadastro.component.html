@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <h2>Cotação</h2>
+          </div>
+          <div class="form-group">
+            <mat-select placeholder="Cliente" name="cliente" formControlName="cdPessoa">
+                <mat-option *ngFor="let cliente of clientes" [value]="cliente.cdPessoa">
+                    {{cliente.nmPessoa}}
+                </mat-option>
+            </mat-select>
+          </div>
+          <div class="form-group">
+              <mat-select placeholder="Filme" name="filme" #filme formControlName="cdFilme">
+                  <mat-option *ngFor="let filme of filmes" [value]="filme.cdFilme">
+                      {{filme.dsTitulo}}
+                  </mat-option>
+              </mat-select>
+              <button mat-raised-button type="button" (click)="adicionar(filme.value)" color="primary">Adicionar</button>              
+          </div>
+          <div class="form-group">
+              <mat-list>
+                  <mat-list-item *ngFor="let item of adicionados">{{ item.dsTitulo }}</mat-list-item>
+              </mat-list>
+          </div>
+          <div class="form-group">
+              <mat-form-field>
+                  <input matInput [matDatepicker]="dtEntrega" formControlName="dtEntrega" placeholder="Entrega">
+                  <mat-datepicker-toggle matSuffix [for]="dtEntrega"></mat-datepicker-toggle>                  
+                  <mat-datepicker #dtEntrega></mat-datepicker>
+              </mat-form-field>              
+          </div>
+          <div class="form-group">
+            <button (click)="cotar()" type="button" mat-raised-button>Cotar</button>
+          </div>
+          <div class="form-group" disabled>
+              <mat-form-field>
+                  <input matInput placeholder="Valor" formControlName="vlValor">
+              </mat-form-field>
+          </div>
+          <div class="form-group">
+            <button color="primary" type="submit" mat-flat-button>Finalizar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

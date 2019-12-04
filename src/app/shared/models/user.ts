@@ -1,8 +1,10 @@
 export class User {
-  id: number;
-  name: string;
-  phone: string;
-  gender: string;
-  email: string;
-  birth: Date;
+  cdPessoa: number;
+  nmPessoa: string;
+  dtNascimento: Date;
+  cdSexo: boolean;  
+  dsEmail: string;
+  dsTelefone: string;
+  cdUsuario: number;
+  cdPerfil: number;
 }

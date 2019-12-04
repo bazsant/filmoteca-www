@@ -1,32 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../shared/services/user.service';
-import { User } from '../shared/models/user';
+import { CotacaoService } from '../shared/services/cotacao.service';
 import Swal from 'sweetalert2';
+import { FilmeService } from '../shared/services/filme.service';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
-  selector: 'app-cliente',
-  templateUrl: './cliente.component.html',
-  styleUrls: ['./cliente.component.scss']
+  selector: 'app-cotacao',
+  templateUrl: './cotacao.component.html',
+  styleUrls: ['./cotacao.component.scss']
 })
-export class ClienteComponent implements OnInit {
+export class CotacaoComponent implements OnInit {
 
-  users: User[];
+  cotacoes = [];
+  pessoas = [];
+  filmes = [];
 
-  constructor(private userService: UserService) { }
+  constructor(private cotacaoService: CotacaoService,
+    private filmeService: FilmeService,
+    private pessoasService: UserService) { }
 
   ngOnInit() {
     this.buscar();
   }
 
   buscar(): any {
-    this.userService.get().subscribe(ret => {
-      console.log(ret);
-      
-      this.users = ret;
+
+
+    this.cotacaoService.get().subscribe(ret => {
+      this.cotacoes = ret;
     });
   }
 
-  excluir(cliente) {
+  excluir(cotacao) {
     Swal.fire({
       title: 'Tem certeza?',
       text: 'Você não poderá reverter esta ação!',
@@ -38,10 +43,10 @@ export class ClienteComponent implements OnInit {
       cancelButtonText: 'Nãããão!'
     }).then((result) => {
       if (result.value) {
-        this.userService.delete(cliente).subscribe(() => {
+        this.cotacaoService.delete(cotacao).subscribe(() => {
           Swal.fire(
             'Excluído!',
-            'O usuário foi excluído.',
+            'Excluído com sucesso.',
             'success'
           ).then(() => {
             this.buscar();
