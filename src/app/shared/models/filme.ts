@@ -6,4 +6,5 @@ export class Filme {
   dsGenero: string;
   dsEstudio: string;
   dtLancamento: Date;
+  vlEstoque: number;
 }

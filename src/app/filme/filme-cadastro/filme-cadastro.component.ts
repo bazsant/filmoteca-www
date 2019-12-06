@@ -18,7 +18,8 @@ export class FilmeCadastroComponent implements OnInit {
     dsElenco: ['', Validators.required],
     dsGenero: ['', Validators.required],
     dsEstudio: ['', Validators.required],
-    dtLancamento: ['', Validators.required]
+    dtLancamento: ['', Validators.required],
+    vlEstoque: ['', Validators.required]
   });
 
   inserir = true;

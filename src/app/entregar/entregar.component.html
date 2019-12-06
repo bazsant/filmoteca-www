@@ -3,29 +3,21 @@
     <div class="col">
       <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <h2>Aluguel</h2>
+          <h2>Entregar</h2>
         </div>
         <div class="form-group">
-          <mat-form-field class="w-100">
-            <mat-select placeholder="Cliente" name="cliente" formControlName="cdPessoa">
+          <mat-form-field class="w-75">
+            <mat-select placeholder="Cliente" name="cliente" #cliente formControlName="cdPessoa">
               <mat-option *ngFor="let cliente of clientes" [value]="cliente.cdPessoa">
                 {{cliente.nmPessoa}}
               </mat-option>
             </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field class="w-75">
-            <mat-select placeholder="Filme" name="filme" #filme formControlName="cdFilme">
-              <mat-option *ngFor="let filme of filmes" [value]="filme.cdFilme">
-                {{filme.dsTitulo}}
-              </mat-option>
-            </mat-select>
           </mat-form-field>&nbsp;
-          <button mat-raised-button type="button" (click)="adicionar(filme.value)" color="primary">Add</button>
+          <button mat-raised-button type="button" (click)="buscar(cliente.value)" color="primary">Buscar</button>
         </div>
+
         <div class="form-group">
-          <p>Filmes:</p>
+          <p>Filmes Não Entregues:</p>
           <mat-list>
             <mat-list-item *ngFor="let item of adicionados">
               {{ item.dsTitulo }}&nbsp;-&nbsp;
@@ -35,19 +27,15 @@
             </mat-list-item>
           </mat-list>
         </div>
-        <div class="form-group">
-          <mat-form-field  class="w-100">
-            <input matInput [matDatepicker]="dtEntrega" formControlName="dtEntregaPrevista" placeholder="Entrega prevista">
-            <mat-datepicker-toggle matSuffix [for]="dtEntrega"></mat-datepicker-toggle>
-            <mat-datepicker #dtEntrega></mat-datepicker>
-          </mat-form-field>
-        </div>
+
         <div class="form-group">
           <button (click)="cotar()" type="button" mat-raised-button>Cotar</button>
         </div>
+
         <div *ngIf="valor" class="form-group" disabled>
           <p>Valor: {{ valor | currency:'BRL' }}</p>
         </div>
+
         <div class="form-group">
           <button color="primary" type="submit" mat-flat-button>Finalizar</button>
         </div>

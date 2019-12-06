@@ -15,17 +15,29 @@ export class CotacaoService {
     return this.http.get<Cotacao[]>(`${environment.apiUrl}/cotacaos`);
   }
 
+  getDashboard(): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/cotacaos/dashboard`);
+  }
+
   getById(id): Observable<Cotacao[]> {
     return this.http.get<Cotacao[]>(`${environment.apiUrl}/cotacaos/${id}`);
   }
 
-  post(cotacao): Observable<Cotacao> {
-    return this.http.post<Cotacao>(`${environment.apiUrl}/cotacaos`, {      
-      CdFilme: cotacao.cdFilme,
+  getByClientId(id): Observable<Cotacao[]> {
+    return this.http.get<Cotacao[]>(`${environment.apiUrl}/cotacaos/cliente/${id}`);
+  }
+
+  post(cotacao, diferenca, filme): Observable<Cotacao> {
+    return this.http.post<Cotacao>(`${environment.apiUrl}/cotacaos`, {
+      CdFilme: filme.cdFilme,
       CdPessoa: cotacao.cdPessoa,
-      VlValor: cotacao.vlValor,
-      DtEntrega: cotacao.dtEntrega
+      VlValor: 1.5 * diferenca,
+      DtEntregaPrevista: cotacao.dtEntregaPrevista
     });
+  }
+
+  postDevolver(cotacoes): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}/cotacaos/devolver`, cotacoes);
   }
 
   put(cotacao): Observable<Cotacao[]> {

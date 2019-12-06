@@ -15,18 +15,31 @@ export class FilmeService {
     return this.http.get<Filme[]>(`${environment.apiUrl}/filmes`);
   }
 
-  getById(id): Observable<Filme[]> {
-    return this.http.get<Filme[]>(`${environment.apiUrl}/filmes/${id}`);
+  getById(id): Observable<Filme> {
+    return this.http.get<Filme>(`${environment.apiUrl}/filmes/${id}`);
+  }
+
+  getByIds(ids): Observable<Filme[]> {
+    return this.http.post<Filme[]>(`${environment.apiUrl}/filmes/ids`, ids);
+  }
+
+  diminuirEstoque(id): any {
+    return this.http.get<any>(`${environment.apiUrl}/filmes/diminuirEstoque/${id}`);
+  }
+
+  filmeDevolvido(id): any {
+    return this.http.get<any>(`${environment.apiUrl}/filmes/filmeDevolvido/${id}`);
   }
 
   post(filme): Observable<Filme> {
-    return this.http.post<Filme>(`${environment.apiUrl}/filmes`, {      
+    return this.http.post<Filme>(`${environment.apiUrl}/filmes`, {
       dsTitulo: filme.dsTitulo,
       dsDiretor: filme.dsDiretor,
       dsElenco: filme.dsElenco,
       dsGenero: filme.dsGenero,
       dsEstudio: filme.dsEstudio,
-      dtLancamento: filme.dtLancamento
+      dtLancamento: filme.dtLancamento,
+      vlEstoque: filme.vlEstoque
     });
   }
 

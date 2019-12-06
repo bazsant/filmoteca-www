@@ -18,6 +18,7 @@
               <th scope="col">Filme</th>
               <th scope="col">Pessoa</th>
               <th scope="col">Valor</th>
+              <th scope="col">Data Prevista</th>
               <th scope="col">Data de Entrega</th>
               <th scope="col"></th>
             </tr>
@@ -27,7 +28,8 @@
               <th scope="row">{{ i + 1 }}</th>
               <td>{{ cotacao.dsTitulo }}</td>
               <td>{{ cotacao.nmPessoa }}</td>
-              <td>{{ cotacao.vlValor }}</td>
+              <td>{{ cotacao.vlValor | currency:'BRL' }}</td>
+              <td>{{ cotacao.dtEntregaPrevista | date : 'mediumDate' : 'UTC' }}</td>
               <td>{{ cotacao.dtEntrega | date : 'mediumDate' : 'UTC' }}</td>
               <td>
                 <i [routerLink]="[ 'editar', cotacao.cdCotacao ]" class="material-icons cursor-pointer">
@@ -44,4 +46,3 @@
       </div>
     </div>
   </div>
-  

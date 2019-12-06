@@ -20,6 +20,7 @@
               <th scope="col">Elenco</th>
               <th scope="col">Genero</th>
               <th scope="col">Estudio</th>
+              <th scope="col">Estoque</th>
               <th scope="col">Lançamento</th>
               <th scope="col"></th>
             </tr>
@@ -32,6 +33,7 @@
               <td>{{ filme.dsElenco }}</td>
               <td>{{ filme.dsGenero }}</td>
               <td>{{ filme.dsEstudio }}</td>
+              <td>{{ filme.vlEstoque }}</td>
               <td>{{ filme.dtLancamento | date : 'mediumDate' : 'UTC' }}</td>
               <td>
                 <i [routerLink]="[ 'editar', filme.cdFilme ]" class="material-icons cursor-pointer">
@@ -48,4 +50,3 @@
       </div>
     </div>
   </div>
-  

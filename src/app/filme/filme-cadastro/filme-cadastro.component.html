@@ -1,52 +1,57 @@
 <div class="container">
-    <div class="row">
-      <div class="col">
-        <form [formGroup]="filmeForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <h2>Dados</h2>
-          </div>
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="filmeForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <h2>Dados</h2>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Titulo" required formControlName="dsTitulo">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Diretor" required formControlName="dsDiretor">
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Elenco" required formControlName="dsElenco">
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Genero" required formControlName="dsGenero">
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Estudio" required formControlName="dsEstudio">
+          </mat-form-field>
+
           <div class="form-group">
             <mat-form-field class="w-100">
-              <input matInput placeholder="Titulo" required formControlName="dsTitulo">
-            </mat-form-field>
-          </div>
-          <div class="form-group">
-            <mat-form-field class="w-100">
-              <input matInput placeholder="Diretor" required formControlName="dsDiretor">
+              <input matInput [matDatepicker]="picker" required formControlName="dtLancamento" placeholder="Lançamento">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </div>
 
           <div class="form-group">
             <mat-form-field class="w-100">
-              <input matInput placeholder="Elenco" required formControlName="dsElenco">
+              <input matInput placeholder="Estoque" required formControlName="vlEstoque" type="number">
             </mat-form-field>
           </div>
+        </div>
 
-          <div class="form-group">
-            <mat-form-field class="w-100">
-              <input matInput placeholder="Genero" required formControlName="dsGenero">
-            </mat-form-field>
-          </div>
-
-          <div class="form-group">
-            <mat-form-field class="w-100">
-              <input matInput placeholder="Estudio" required formControlName="dsEstudio">
-            </mat-form-field>
-
-            <div class="form-group">
-                <mat-form-field class="w-100">
-                  <input matInput  [matDatepicker]="picker" required formControlName="dtLancamento" placeholder="Lançamento">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-              </div>
-          </div>
-
-          <div class="form-group">
-            <button color="primary" type="submit" mat-flat-button>Submeter</button>
-          </div>
-        </form>
-      </div>
+        <div class="form-group">
+          <button color="primary" type="submit" mat-flat-button>Submeter</button>
+        </div>
+      </form>
     </div>
   </div>
-  
+</div>

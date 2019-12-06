@@ -14,18 +14,20 @@ import * as moment from 'moment';
 })
 export class CotacaoCadastroComponent implements OnInit {
 
-  userForm = this.fb.group({    
+  userForm = this.fb.group({
     cdCotacao: [''],
     cdFilme: ['', Validators.required],
     cdPessoa: ['', Validators.required],
     vlValor: ['', Validators.required],
-    dtEntrega: ['', Validators.required]
+    dtEntregaPrevista: ['', Validators.required]
   });
 
   inserir = true;
   id: string;
 
-  clientes= [];
+  valor: any;
+
+  clientes = [];
   filmes = [];
   adicionados = [];
 
@@ -36,19 +38,19 @@ export class CotacaoCadastroComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router) { }
 
-   ngOnInit() {
+  ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
 
 
-    this.userService.get().subscribe(x=> {
-      this.clientes = x
-    })
+    this.userService.get().subscribe(x => {
+      this.clientes = x;
+    });
 
-    this.filmeService.get().subscribe(x=> {
-      this.filmes = x
-    })
+    this.filmeService.get().subscribe(x => {
+      this.filmes = x;
+    });
 
-    
+
     if (this.id) {
       this.inserir = false;
       this.cotacaoService.getById(this.id).subscribe(res => {
@@ -62,32 +64,40 @@ export class CotacaoCadastroComponent implements OnInit {
   }
 
   adicionar(item) {
-    
     this.adicionados.push({
-      dsTitulo: this.filmes.find(x=> x.cdFilme == item).dsTitulo,
+      dsTitulo: this.filmes.find(x => x.cdFilme === item).dsTitulo,
       cdFilme: item
-    })
-    
+    });
+
   }
 
-  cotar() {    
-    const diferenca =this.userForm.get('dtEntrega').value.diff(moment(), 'days') + 1;
-
+  cotar() {
+    const diferenca = this.userForm.get('dtEntregaPrevista').value.diff(moment(), 'days') + 1;
+    this.valor = this.adicionados.length * 1.5 * diferenca;
     this.userForm.patchValue({
-      vlValor: this.adicionados.length * 1.5 * diferenca
-    })
+      vlValor: this.valor
+    });
+  }
+
+  retirar(item) {
+    this.adicionados.splice(this.adicionados.indexOf(item), 1);
   }
 
   onSubmit() {
     if (this.inserir) {
-      this.cotacaoService.post(this.userForm.value).subscribe(() => {
-        Swal.fire('Sucesso!', 'Cotação inserida com sucesso!', 'success').then(() => {
-          this.router.navigate(['/cotacoes']);
+      const diferenca = this.userForm.get('dtEntregaPrevista').value.diff(moment(), 'days') + 1;
+
+      this.adicionados.map(filme => {
+        this.cotacaoService.post(this.userForm.value, diferenca, filme).toPromise()
+        .then(() => {
+          this.filmeService.diminuirEstoque(filme.cdFilme).toPromise();
         });
-      }, err => {
-        console.error(err);
-        Swal.fire('Erro!', 'Erro ao inserir cotação', 'error');
       });
+
+      Swal.fire('Sucesso!', 'Cotação inserida com sucesso!', 'success').then(() => {
+        this.router.navigate(['/cotacoes']);
+      });
+
     } else {
       this.cotacaoService.put(this.userForm.value).subscribe(() => {
         Swal.fire('Sucesso!', 'Cotação alterada com sucesso!', 'success').then((res) => {

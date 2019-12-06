@@ -16,8 +16,8 @@ export class CotacaoComponent implements OnInit {
   filmes = [];
 
   constructor(private cotacaoService: CotacaoService,
-    private filmeService: FilmeService,
-    private pessoasService: UserService) { }
+              private filmeService: FilmeService,
+              private pessoasService: UserService) { }
 
   ngOnInit() {
     this.buscar();

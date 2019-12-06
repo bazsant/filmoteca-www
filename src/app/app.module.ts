@@ -15,7 +15,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
-import { MatListModule } from '@angular/material/list'
+import { MatListModule } from '@angular/material/list';
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -36,10 +36,12 @@ import { FilmeCadastroComponent } from './filme/filme-cadastro/filme-cadastro.co
 import { CotacaoComponent } from './cotacao/cotacao.component';
 import { CotacaoCadastroComponent } from './cotacao/cotacao-cadastro/cotacao-cadastro.component';
 
+import { EntregarComponent } from './entregar/entregar.component';
+
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: HomeComponent, canActivate: [AuthGuardService] },
-  
+
   // clientes
   { path: 'clientes', component: ClienteComponent, canActivate: [AuthGuardService] },
   { path: 'clientes/cadastro', component: ClienteCadastroComponent, canActivate: [AuthGuardService] },
@@ -54,6 +56,8 @@ const appRoutes: Routes = [
   { path: 'cotacoes', component: CotacaoComponent, canActivate: [AuthGuardService] },
   { path: 'cotacoes/cadastro', component: CotacaoCadastroComponent, canActivate: [AuthGuardService] },
   { path: 'cotacoes/editar/:id', component: CotacaoCadastroComponent, canActivate: [AuthGuardService] },
+
+  { path: 'entregar', component: EntregarComponent, canActivate: [AuthGuardService] },
 
   { path: 'sobre', component: AboutComponent, canActivate: [AuthGuardService] },
   { path: '**', component: PageNotFoundComponent, canActivate: [AuthGuardService] }
@@ -73,7 +77,8 @@ registerLocaleData(localePt, 'pt');
     FilmeComponent,
     FilmeCadastroComponent,
     CotacaoComponent,
-    CotacaoCadastroComponent
+    CotacaoCadastroComponent,
+    EntregarComponent
   ],
   imports: [
     BrowserModule,
